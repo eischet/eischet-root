@@ -11,12 +11,17 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
+        <revision>1.0.0</revision>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <deps.eischet.mvn>1.0.2</deps.eischet.mvn>
+
+        <!-- dependency versions for commonly used software -->
+        <deps.jetty>12.1.1</deps.jetty>
+        <deps.slf4j>2.0.17</deps.slf4j>
+        <deps.jbannotations>26.0.2-1</deps.jbannotations>
     </properties>
 
     <modules>
@@ -25,7 +30,6 @@
     </modules>
 
     <build>
-
         <extensions>
             <extension>
                 <groupId>com.eischet.mvn</groupId>
@@ -62,9 +66,7 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
-
 
     <distributionManagement>
         <repository>
@@ -77,5 +79,55 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${deps.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains</groupId>
+                <artifactId>annotations</artifactId>
+                <version>${deps.jbannotations}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-server</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty.ee8</groupId>
+                <artifactId>jetty-ee8-servlet</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty.ee10</groupId>
+                <artifactId>jetty-ee10-servlet</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty.ee10</groupId>
+                <artifactId>jetty-ee10-servlets</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty.ee10</groupId>
+                <artifactId>jetty-ee10-webapp</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty.ee10</groupId>
+                <artifactId>jetty-ee10-annotations</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jetty.ee10.websocket</groupId>
+                <artifactId>jetty-ee10-websocket-jakarta-server</artifactId>
+                <version>${deps.jetty}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 </project>
