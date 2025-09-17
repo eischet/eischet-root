@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.eischet</groupId>
+    <artifactId>root-project</artifactId>
+    <version>${revision}</version>
+
+    <packaging>pom</packaging>
+
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <deps.eischet.mvn>1.0.2</deps.eischet.mvn>
+    </properties>
+
+    <modules>
+        <module>eischet-root-public</module>
+        <module>eischet-root-private</module>
+    </modules>
+
+    <build>
+
+        <extensions>
+            <extension>
+                <groupId>com.eischet.mvn</groupId>
+                <artifactId>wagon-providers</artifactId>
+                <version>${deps.eischet.mvn}</version>
+            </extension>
+        </extensions>
+
+        <plugins>
+            <plugin>
+                <!-- required for ${revision} to work in deployed/installed POMs generated from this build, and a good idea anyways -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.7.2</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+    <distributionManagement>
+        <repository>
+            <id>eischet-public-releases</id>
+            <url>eischet-ftps:https://mvn.eischet.net/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>eischet-public-snapshots</id>
+            <url>eischet-ftps:https://mvn.eischet.net/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+</project>
