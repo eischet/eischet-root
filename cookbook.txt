@@ -3,17 +3,17 @@ For creating new projects based on this template.
 Public projects:
 
     <parent>
-        <groupId>com.eischet</groupId>
-        <artifactId>eischet-root-public</artifactId>
-        <version>1.0.2</version>
+        <groupId>com.eischet.root</groupId>
+        <artifactId>lib-public</artifactId>
+        <version>1.0.3</version>
     </parent>
 
 Internal projects:
 
     <parent>
-        <groupId>com.eischet</groupId>
-        <artifactId>eischet-root-private</artifactId>
-        <version>1.0.2</version>
+        <groupId>com.eischet.root</groupId>
+        <artifactId>lib-private</artifactId>
+        <version>1.0.3</version>
     </parent>
 
 For deploying artifacts to our internal repos:
@@ -23,9 +23,41 @@ For deploying artifacts to our internal repos:
             <extension>
                 <groupId>com.eischet.mvn</groupId>
                 <artifactId>wagon-providers</artifactId>
-                <version>1.0.2</version>
+                <version>1.0.3</version>
             </extension>
         </extensions>
         ...
     </build>
+
+For resolving the parent POM from our internal repos:
+
+    <repositories>
+        <repository>
+            <id>eischet-public-releases</id>
+            <url>https://mvn.eischet.net/public/releases</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>eischet-public-snapshots</id>
+            <url>https://mvn.eischet.net/public/snapshots</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
+        </repository>
+    </repositories>
+
+When setting up a new machine / build server, add files to ~/.m2/repository/.remoteRepositoryFilters named:
+
+prefixes-eischet-internal-releases.txt
+prefixes-eischet-internal-snapshots.txt
+prefixes-eischet-public-releases.txt
+prefixes-eischet-public-snapshots.txt
+
+containing this text:
+
+## repository-prefixes/2.0
+com/eischet/
+net/eischet/
+
+This will save a lot of bandwidth, thank you.
 

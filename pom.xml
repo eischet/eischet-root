@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.eischet</groupId>
+    <groupId>com.eischet.root</groupId>
     <artifactId>root-project</artifactId>
     <version>${revision}</version>
 
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.2</revision>
+        <revision>1.0.3</revision>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,8 +25,9 @@
     </properties>
 
     <modules>
-        <module>eischet-root-public</module>
-        <module>eischet-root-private</module>
+        <module>lib-public</module>
+        <module>lib-private</module>
+        <module>eischet-app</module>
     </modules>
 
     <build>

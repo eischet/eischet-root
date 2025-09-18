@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.eischet.root</groupId>
+        <artifactId>root-project</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <packaging>pom</packaging>
+
+    <artifactId>app</artifactId>
+
+    <description>Reusable parent POM for inhouse projects that sets some reasonable baseline defaults.</description>
+
+    <properties>
+        <!-- apps default to the latest LTS release -->
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+
+        <!-- dependency versions for internally produced libraries, OSS -->
+        <deps.ajui>1.0.21</deps.ajui>
+        <deps.janitor>0.9.33</deps.janitor>
+        <deps.janitor-orm>1.0.20</deps.janitor-orm>
+        <deps.janitor.graph>1.0.5</deps.janitor.graph>
+        <deps.dbxs>1.6.2</deps.dbxs>
+        <deps.ews>2.3.1</deps.ews>
+        <!-- closed source or not yet open -->
+        <deps.ajui.v8>1.0.24</deps.ajui.v8>
+        <deps.ajui.vx>1.0.1</deps.ajui.vx>
+        <!-- (not all projects marked as OSS are already available online, but are *planned* to go free) -->
+
+    </properties>
+
+</project>
