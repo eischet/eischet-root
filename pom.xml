@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.0</revision>
+        <revision>1.0.2</revision>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,6 +40,7 @@
 
         <plugins>
             <plugin>
+                <!-- the flatten plugin will be applied to every project automatically -->
                 <!-- required for ${revision} to work in deployed/installed POMs generated from this build, and a good idea anyways -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
@@ -65,19 +66,86 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
+        <pluginManagement>
+            <!-- the following plugins are pre-configured, but need to be included in an inheriting project to activate -->
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.3.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.11.3</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>3.2.8</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <configuration>
+                                <skip>true</skip> <!-- TODO: enable when building releases -->
+                            </configuration>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+
+        </pluginManagement>
     </build>
 
     <distributionManagement>
         <repository>
-            <id>eischet-public-releases</id>
+            <id>eischet-public-releases-upload</id>
             <url>eischet-ftps:https://mvn.eischet.net/releases</url>
         </repository>
         <snapshotRepository>
-            <id>eischet-public-snapshots</id>
+            <id>eischet-public-snapshots-upload</id>
             <url>eischet-ftps:https://mvn.eischet.net/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>eischet-public-releases</id>
+            <url>https://mvn.eischet.net/public/releases</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>eischet-public-snapshots</id>
+            <url>https://mvn.eischet.net/public/snapshots</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
+        </repository>
+    </repositories>
+
 
     <dependencyManagement>
         <dependencies>

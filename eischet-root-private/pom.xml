@@ -14,25 +14,25 @@
 
     <distributionManagement>
         <repository>
-            <id>eischet-internal-releases</id>
+            <id>eischet-internal-releases-upload</id>
             <url>eischet-ftps:https://mvn.eischet.net/internal/releases</url>
         </repository>
         <snapshotRepository>
-            <id>eischet-internal-snapshots</id>
+            <id>eischet-internal-snapshots-upload</id>
             <url>eischet-ftps:https://mvn.eischet.net/internal/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
     <repositories>
         <repository>
-            <id>eischet-internal-releases</id>
-            <url>eischet-ftps:https://mvn.eischet.net/internal/releases</url>
+            <id>eischet-internal-releases-upload</id>
+            <url>https://mvn.eischet.net/internal/releases</url>
             <snapshots><enabled>false</enabled></snapshots>
             <releases><enabled>true</enabled></releases>
         </repository>
         <repository>
-            <id>eischet-internal-snapshots</id>
-            <url>eischet-ftps:https://mvn.eischet.net/internal/snapshots</url>
+            <id>eischet-internal-snapshots-upload</id>
+            <url>https://mvn.eischet.net/internal/snapshots</url>
             <snapshots><enabled>true</enabled></snapshots>
             <releases><enabled>false</enabled></releases>
         </repository>

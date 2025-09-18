@@ -1,0 +1,31 @@
+For creating new projects based on this template.
+
+Public projects:
+
+    <parent>
+        <groupId>com.eischet</groupId>
+        <artifactId>eischet-root-public</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </parent>
+
+Internal projects:
+
+    <parent>
+        <groupId>com.eischet</groupId>
+        <artifactId>eischet-root-private</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </parent>
+
+For deploying artifacts to our internal repos:
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>com.eischet.mvn</groupId>
+                <artifactId>wagon-providers</artifactId>
+                <version>1.0.2</version>
+            </extension>
+        </extensions>
+        ...
+    </build>
+
