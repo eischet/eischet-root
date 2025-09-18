@@ -5,7 +5,7 @@ Public projects:
     <parent>
         <groupId>com.eischet</groupId>
         <artifactId>eischet-root-public</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.2</version>
     </parent>
 
 Internal projects:
@@ -13,7 +13,7 @@ Internal projects:
     <parent>
         <groupId>com.eischet</groupId>
         <artifactId>eischet-root-private</artifactId>
-        <version>1.0.2-SNAPSHOT</version>
+        <version>1.0.2</version>
     </parent>
 
 For deploying artifacts to our internal repos:
