@@ -11,12 +11,12 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.3</revision>
+        <revision>1.0.4-SNAPSHOT</revision>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <deps.eischet.mvn>1.0.2</deps.eischet.mvn>
+        <deps.eischet.mvn>1.0.3</deps.eischet.mvn>
 
         <!-- dependency versions for commonly used software -->
         <deps.jetty>12.1.1</deps.jetty>
@@ -135,18 +135,60 @@
     <repositories>
         <repository>
             <id>eischet-public-releases</id>
-            <url>https://mvn.eischet.net/public/releases</url>
-            <snapshots><enabled>false</enabled></snapshots>
-            <releases><enabled>true</enabled></releases>
+            <url>https://mvn.eischet.net/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
         <repository>
             <id>eischet-public-snapshots</id>
-            <url>https://mvn.eischet.net/public/snapshots</url>
-            <snapshots><enabled>true</enabled></snapshots>
-            <releases><enabled>false</enabled></releases>
+            <url>https://mvn.eischet.net/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>eischet-internal-releases</id>
+            <url>https://mvn.eischet.net/internal/releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>eischet-internal-snapshots</id>
+            <url>https://mvn.eischet.net/internal/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
     </repositories>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>eischet-public-releases</id>
+            <url>https://mvn.eischet.net/releases</url>
+            <snapshots><enabled>false</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>eischet-public-snapshots</id>
+            <url>https://mvn.eischet.net/snapshots</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>false</enabled></releases>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>

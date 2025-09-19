@@ -9,33 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>lib-private</artifactId>
+    <artifactId>lib-public</artifactId>
     <packaging>pom</packaging>
-
-    <distributionManagement>
-        <repository>
-            <id>eischet-internal-releases-upload</id>
-            <url>eischet-ftps:https://mvn.eischet.net/internal/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>eischet-internal-snapshots-upload</id>
-            <url>eischet-ftps:https://mvn.eischet.net/internal/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <repositories>
-        <repository>
-            <id>eischet-internal-releases-upload</id>
-            <url>https://mvn.eischet.net/internal/releases</url>
-            <snapshots><enabled>false</enabled></snapshots>
-            <releases><enabled>true</enabled></releases>
-        </repository>
-        <repository>
-            <id>eischet-internal-snapshots-upload</id>
-            <url>https://mvn.eischet.net/internal/snapshots</url>
-            <snapshots><enabled>true</enabled></snapshots>
-            <releases><enabled>false</enabled></releases>
-        </repository>
-    </repositories>
-
+    
 </project>

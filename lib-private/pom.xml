@@ -9,7 +9,7 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>lib-public</artifactId>
+    <artifactId>lib-private</artifactId>
     <packaging>pom</packaging>
 
 

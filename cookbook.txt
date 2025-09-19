@@ -16,7 +16,9 @@ Internal projects:
         <version>1.0.3</version>
     </parent>
 
-For deploying artifacts to our internal repos:
+(These will be deployed to an internal repo that is not publicly accessible.)
+
+Internal deployments (public and private) use a custom wagon provider:
 
     <build>
         <extensions>
