@@ -17,8 +17,7 @@
 
     <properties>
         <!-- apps default to the latest LTS release -->
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+        <maven.compiler.release>25</maven.compiler.release>
 
         <!-- dependency versions for internally produced libraries, OSS -->
         <deps.ajui>1.0.21</deps.ajui>
