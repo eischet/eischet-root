@@ -33,4 +33,25 @@
 
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.eischet.root</groupId>
+            <artifactId>app-tooling</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- use mvn -P beta for a production build! -->
+    <profiles>
+        <profile>
+            <id>beta</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.eischet.root</groupId>
+                    <artifactId>app-beta</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+
 </project>
