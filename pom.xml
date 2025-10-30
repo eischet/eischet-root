@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.5</revision>
+        <revision>1.0.6</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -39,6 +39,14 @@
         </extensions>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <parameters>true</parameters>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
             <plugin>
                 <!-- the flatten plugin will be applied to every project automatically -->
                 <!-- required for ${revision} to work in deployed/installed POMs generated from this build, and a good idea anyways -->
