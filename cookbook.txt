@@ -1,65 +1,49 @@
-For creating new projects based on this template.
-
-Public projects:
+Copy into pom.xml:
 
     <parent>
         <groupId>com.eischet.root</groupId>
         <artifactId>lib-public</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.8</version>
     </parent>
 
-Internal projects:
+ArtifactId varies: lib-public, lib-private, app
 
-    <parent>
-        <groupId>com.eischet.root</groupId>
-        <artifactId>lib-private</artifactId>
-        <version>1.0.3</version>
-    </parent>
-
-(These will be deployed to an internal repo that is not publicly accessible.)
-
-Internal deployments (public and private) use a custom wagon provider:
-
-    <build>
-        <extensions>
-            <extension>
-                <groupId>com.eischet.mvn</groupId>
-                <artifactId>wagon-providers</artifactId>
-                <version>1.0.3</version>
-            </extension>
-        </extensions>
-        ...
-    </build>
-
-For resolving the parent POM from our internal repos:
+Apps automatically include the app-tooling jar.
+For Beta builds of apps, use the 'beta' profile, which includes an additional jar.
+Then, use AppTooling.isBetaVersion to detect. That's a simple way of enabling beta builds, e.g. with additional sanity checks that
+you would not want to do in regular builds, e.g. reading all records from a connected database, which we actualy do for some systems.
 
     <repositories>
         <repository>
-            <id>eischet-public-releases</id>
-            <url>https://mvn.eischet.net/public/releases</url>
-            <snapshots><enabled>false</enabled></snapshots>
-            <releases><enabled>true</enabled></releases>
+            <id>repo-eischet-releases</id>
+            <name>Eischet Software Repository</name>
+            <url>https://repo.srv.eischet.net/releases</url>
         </repository>
         <repository>
-            <id>eischet-public-snapshots</id>
-            <url>https://mvn.eischet.net/public/snapshots</url>
-            <snapshots><enabled>true</enabled></snapshots>
-            <releases><enabled>false</enabled></releases>
+            <id>repo-eischet-snapshots</id>
+            <name>Eischet Software Repository</name>
+            <url>https://repo.srv.eischet.net/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
-When setting up a new machine / build server, add files to ~/.m2/repository/.remoteRepositoryFilters named:
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo-eischet-releases</id>
+            <name>Eischet Software Repository</name>
+            <url>https://repo.srv.eischet.net/releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>repo-eischet-snapshots</id>
+            <name>Eischet Software Repository</name>
+            <url>https://repo.srv.eischet.net/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
-prefixes-eischet-internal-releases.txt
-prefixes-eischet-internal-snapshots.txt
-prefixes-eischet-public-releases.txt
-prefixes-eischet-public-snapshots.txt
 
-containing this text:
-
-## repository-prefixes/2.0
-com/eischet/
-net/eischet/
-
-This will save a lot of bandwidth, thank you.
 
