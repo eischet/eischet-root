@@ -11,14 +11,14 @@
     <packaging>pom</packaging>
 
     <properties>
-        <revision>1.0.9</revision>
+        <revision>1.0.10</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- dependency versions for commonly used software -->
         <deps.jetty>12.1.6</deps.jetty>
         <deps.slf4j>2.0.17</deps.slf4j>
-        <deps.jbannotations>26.0.2-1</deps.jbannotations>
+        <deps.jbannotations>26.1.0</deps.jbannotations>
     </properties>
 
     <modules>
