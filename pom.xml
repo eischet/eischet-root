@@ -10,8 +10,8 @@
 
     <packaging>pom</packaging>
 
-    <name>Eischet Software Parent POM</name>
-    <description>Common parent for various Eischet Software projects</description>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Common parent POM for various Eischet Software projects</description>
     <url>https://github.com/eischet/eischet-root</url>
 
     <scm>

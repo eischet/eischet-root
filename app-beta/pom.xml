@@ -9,8 +9,10 @@
         <version>${revision}</version>
     </parent>
 
+    <packaging>jar</packaging>
     <artifactId>app-beta</artifactId>
 
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>This JAR file, when included in a build, marks this build as a beta version.</description>
 
     <build>
@@ -40,6 +42,6 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
+
 </project>

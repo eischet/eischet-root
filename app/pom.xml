@@ -10,9 +10,9 @@
     </parent>
 
     <packaging>pom</packaging>
-
     <artifactId>app</artifactId>
 
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>Reusable parent POM for inhouse projects that sets some reasonable baseline defaults.</description>
 
     <properties>
@@ -22,9 +22,7 @@
         <!-- dependency versions for internally produced libraries, OSS -->
         <deps.ajui>1.0.21</deps.ajui>
         <deps.janitor>0.9.33</deps.janitor>
-        <deps.janitor-orm>1.0.20</deps.janitor-orm>
         <deps.janitor.graph>1.0.5</deps.janitor.graph>
-        <deps.dbxs>1.6.2</deps.dbxs>
         <deps.ews>2.3.1</deps.ews>
         <!-- closed source or not yet open -->
         <deps.ajui.v8>1.0.24</deps.ajui.v8>
@@ -52,6 +50,5 @@
             </dependencies>
         </profile>
     </profiles>
-
 
 </project>
