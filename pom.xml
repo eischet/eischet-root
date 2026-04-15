@@ -10,13 +10,41 @@
 
     <packaging>pom</packaging>
 
+    <name>Eischet Software Parent POM</name>
+    <description>Common parent for various Eischet Software projects</description>
+    <url>https://github.com/eischet/eischet-root</url>
+
+    <scm>
+        <connection>scm:git:git://github.com/eischet/eischet-root.git</connection>
+        <developerConnection>scm:git:ssh://github.com:eischet/eischet-root.git</developerConnection>
+        <url>https://github.com/eischet/eischet-root</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Stefan Eischet</name>
+            <email>stefan@eischet.net</email>
+            <organization>Eischet Software e.K.</organization>
+            <organizationUrl>https://www.eischet.com/</organizationUrl>
+        </developer>
+    </developers>
+
+
+
     <properties>
-        <revision>1.0.10</revision>
+        <revision>1.0.11-SNAPSHOT</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- dependency versions for commonly used software -->
-        <deps.jetty>12.1.6</deps.jetty>
+        <deps.jetty>12.1.8</deps.jetty>
         <deps.slf4j>2.0.17</deps.slf4j>
         <deps.jbannotations>26.1.0</deps.jbannotations>
     </properties>
@@ -66,6 +94,17 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!-- see https://central.sonatype.org/publish/publish-portal-maven/ -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.9.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -121,6 +160,7 @@
         </pluginManagement>
     </build>
 
+    <!--
     <distributionManagement>
         <repository>
             <id>repo-eischet-releases</id>
@@ -165,6 +205,7 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+    -->
 
     <dependencyManagement>
 
