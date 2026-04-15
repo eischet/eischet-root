@@ -105,6 +105,7 @@
                         <phase>verify</phase>
                         <configuration>
                             <skip>false</skip>
+                            <bestPractices>true</bestPractices>
                         </configuration>
                         <goals>
                             <goal>sign</goal>
@@ -163,6 +164,7 @@
                             <phase>verify</phase>
                             <configuration>
                                 <skip>false</skip>
+                                <bestPractices>true</bestPractices>
                             </configuration>
                             <goals>
                                 <goal>sign</goal>
