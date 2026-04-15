@@ -39,7 +39,7 @@
 
 
     <properties>
-        <revision>1.0.11-SNAPSHOT</revision>
+        <revision>1.0.11</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
