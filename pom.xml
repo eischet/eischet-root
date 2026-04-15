@@ -146,7 +146,7 @@
                             <id>sign-artifacts</id>
                             <phase>verify</phase>
                             <configuration>
-                                <skip>true</skip> <!-- TODO: enable when building releases -->
+                                <skip>false</skip>
                             </configuration>
                             <goals>
                                 <goal>sign</goal>
