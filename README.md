@@ -5,4 +5,4 @@ You probably don't want to use this if you don't work here, but feel free to hav
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
