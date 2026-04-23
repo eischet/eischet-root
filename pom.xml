@@ -39,7 +39,7 @@
 
 
     <properties>
-        <revision>1.0.12</revision>
+        <revision>1.0.13-SNAPSHOT</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -113,18 +113,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- see https://central.sonatype.org/publish/publish-portal-maven/ -->
-            <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.9.0</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <publishingServerId>central</publishingServerId>
-                </configuration>
-                <inherited>false</inherited>
-            </plugin>
-
         </plugins>
         <pluginManagement>
             <!-- the following plugins are pre-configured, but need to be included in an inheriting project to activate -->
@@ -175,7 +163,6 @@
                 </plugin>
 
             </plugins>
-
         </pluginManagement>
     </build>
 
@@ -240,6 +227,10 @@
     </dependencyManagement>
 
     <profiles>
+        <!--
+            Beta versions (= usually any snapshots) include JRebel automatically.
+            In the app/pom.xml the app-beta dependency is included, too, to mark the app as a beta version in a way that code can detect easily.
+        -->
         <profile>
             <id>beta</id>
             <activation>
@@ -264,6 +255,52 @@
                 </plugins>
             </build>
         </profile>
+        <!--
+            Internal Deployment profile
+        -->
+        <profile>
+            <id>deploy-internal</id>
+            <distributionManagement>
+                <repository>
+                    <id>repo-eischet-releases</id>
+                    <name>Eischet Software Repository</name>
+                    <url>https://repo.srv.eischet.net/releases</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <snapshotRepository>
+                    <id>repo-eischet-snapshots</id>
+                    <name>Eischet Software Repository</name>
+                    <url>https://repo.srv.eischet.net/snapshots</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <!--
+            Maven Central deployment profile
+            see https://central.sonatype.org/publish/publish-portal-maven/
+        -->
+        <profile>
+            <id>deploy-central</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.9.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
     </profiles>
+
 
 </project>
