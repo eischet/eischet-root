@@ -37,16 +37,18 @@
     </developers>
 
 
-
     <properties>
-        <revision>1.0.13</revision>
+        <revision>1.0.14-SNAPSHOT</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- dependency versions for commonly used software -->
-        <deps.jetty>12.1.12</deps.jetty>
-        <deps.slf4j>2.0.18</deps.slf4j>
+        <deps.jetty>12.1.13</deps.jetty>
+        <deps.slf4j>2.0.19</deps.slf4j>
         <deps.jbannotations>26.1.0</deps.jbannotations>
+
+        <!-- by default, sign artifacts via GPG -->
+        <gpg.skip>false</gpg.skip>
     </properties>
 
     <modules>
@@ -69,7 +71,7 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!-- the flatten plugin will be applied to every project automatically -->
+                <!-- the flatten-plugin will be applied to every project automatically -->
                 <!-- required for ${revision} to work in deployed/installed POMs generated from this build, and a good idea anyways -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
@@ -104,8 +106,8 @@
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
                         <configuration>
-                            <skip>false</skip>
                             <bestPractices>true</bestPractices>
+                            <skip>${gpg.skip}</skip>
                         </configuration>
                         <goals>
                             <goal>sign</goal>
@@ -152,8 +154,8 @@
                             <id>sign-artifacts</id>
                             <phase>verify</phase>
                             <configuration>
-                                <skip>false</skip>
                                 <bestPractices>true</bestPractices>
+                                <skip>${gpg.skip}</skip>
                             </configuration>
                             <goals>
                                 <goal>sign</goal>
@@ -236,6 +238,9 @@
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
+            <properties>
+                <gpg.skip>true</gpg.skip>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
