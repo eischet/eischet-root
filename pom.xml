@@ -44,7 +44,7 @@
 
         <!-- dependency versions for commonly used software -->
         <deps.jetty>12.1.13</deps.jetty>
-        <deps.slf4j>2.0.19</deps.slf4j>
+        <deps.slf4j>2.0.20</deps.slf4j>
         <deps.jbannotations>26.1.0</deps.jbannotations>
 
         <!-- by default, sign artifacts via GPG -->
