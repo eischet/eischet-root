@@ -38,7 +38,7 @@
 
 
     <properties>
-        <revision>1.0.14</revision>
+        <revision>1.0.15</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -47,7 +47,7 @@
         <deps.slf4j>2.0.19</deps.slf4j>
         <deps.jbannotations>26.1.0</deps.jbannotations>
 
-        <!-- by default, sign artifacts via GPG -->
+        <!-- by default, sign artifacts via GPG; the maven-gpg-plugin reads this property itself (override with -Dgpg.skip=true) -->
         <gpg.skip>false</gpg.skip>
     </properties>
 
@@ -106,8 +106,8 @@
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
                         <configuration>
+                            <!-- do not set <skip> here: an explicit value would override -Dgpg.skip on the command line -->
                             <bestPractices>true</bestPractices>
-                            <skip>${gpg.skip}</skip>
                         </configuration>
                         <goals>
                             <goal>sign</goal>
@@ -145,25 +145,6 @@
                         </execution>
                     </executions>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>3.2.8</version>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <configuration>
-                                <bestPractices>true</bestPractices>
-                                <skip>${gpg.skip}</skip>
-                            </configuration>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
             </plugins>
         </pluginManagement>
     </build>
@@ -230,7 +211,8 @@
 
     <profiles>
         <!--
-            Beta versions (= usually any snapshots) include JRebel automatically.
+            Beta versions (= usually any snapshots) include JRebel automatically and skip GPG signing.
+            To sign a beta build anyway, pass -Dgpg.skip=false (command line wins over this profile property).
             In the app/pom.xml the app-beta dependency is included, too, to mark the app as a beta version in a way that code can detect easily.
         -->
         <profile>
