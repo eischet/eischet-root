@@ -18,17 +18,6 @@
     <properties>
         <!-- apps default to the latest LTS release -->
         <maven.compiler.release>25</maven.compiler.release>
-
-        <!-- dependency versions for internally produced libraries, OSS -->
-        <deps.ajui>1.0.21</deps.ajui>
-        <deps.janitor>0.9.33</deps.janitor>
-        <deps.janitor.graph>1.0.5</deps.janitor.graph>
-        <deps.ews>2.3.1</deps.ews>
-        <!-- closed source or not yet open -->
-        <deps.ajui.v8>1.0.24</deps.ajui.v8>
-        <deps.ajui.vx>1.0.1</deps.ajui.vx>
-        <!-- (not all projects marked as OSS are already available online, but are *planned* to go free) -->
-
     </properties>
 
     <dependencies>

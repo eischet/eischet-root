@@ -38,7 +38,7 @@
 
 
     <properties>
-        <revision>1.0.15</revision>
+        <revision>1.0.16</revision>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -47,8 +47,9 @@
         <deps.slf4j>2.0.19</deps.slf4j>
         <deps.jbannotations>26.1.0</deps.jbannotations>
 
-        <!-- by default, sign artifacts via GPG; the maven-gpg-plugin reads this property itself (override with -Dgpg.skip=true) -->
-        <gpg.skip>false</gpg.skip>
+        <!-- sign artifacts via GPG only when deploying (profiles deploy-internal / deploy-central), so that a local
+             "mvn install" works without a GPG key; override on the command line with -Dgpg.skip=false/true -->
+        <gpg.skip>true</gpg.skip>
     </properties>
 
     <modules>
@@ -212,9 +213,61 @@
 
     <profiles>
         <!--
-            Beta versions (= usually any snapshots) include JRebel automatically and skip GPG signing.
-            To sign a beta build anyway, pass -Dgpg.skip=false (command line wins over this profile property).
+            Internal Deployment profile
+        -->
+        <profile>
+            <id>deploy-internal</id>
+            <properties>
+                <gpg.skip>false</gpg.skip>
+            </properties>
+            <distributionManagement>
+                <repository>
+                    <id>repo-eischet-releases</id>
+                    <name>Eischet Software Repository</name>
+                    <url>https://repo.srv.eischet.net/releases</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <snapshotRepository>
+                    <id>repo-eischet-snapshots</id>
+                    <name>Eischet Software Repository</name>
+                    <url>https://repo.srv.eischet.net/snapshots</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <!--
+            Maven Central deployment profile
+            see https://central.sonatype.org/publish/publish-portal-maven/
+        -->
+        <profile>
+            <id>deploy-central</id>
+            <properties>
+                <gpg.skip>false</gpg.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.11.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+        </profile>
+        <!--
+            Beta versions (= usually any snapshots) include JRebel automatically.
+>>>>>>> 53dc745ede43c2202cb0f3b5f8d167d30349a26a
             In the app/pom.xml the app-beta dependency is included, too, to mark the app as a beta version in a way that code can detect easily.
+            Declared after the deploy profiles on purpose: its gpg.skip wins, so beta versions are not signed, not even on deploy.
         -->
         <profile>
             <id>beta</id>
@@ -242,63 +295,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <!--
-            Internal Deployment profile
-        -->
-        <profile>
-            <id>deploy-internal</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-            <distributionManagement>
-                <repository>
-                    <id>repo-eischet-releases</id>
-                    <name>Eischet Software Repository</name>
-                    <url>https://repo.srv.eischet.net/releases</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-                <snapshotRepository>
-                    <id>repo-eischet-snapshots</id>
-                    <name>Eischet Software Repository</name>
-                    <url>https://repo.srv.eischet.net/snapshots</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-        <!--
-            Maven Central deployment profile
-            see https://central.sonatype.org/publish/publish-portal-maven/
-        -->
-        <profile>
-            <id>deploy-central</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.central</groupId>
-                        <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>0.11.0</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <publishingServerId>central</publishingServerId>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-
         </profile>
     </profiles>
 
